@@ -1,0 +1,23 @@
+﻿@model PS.Models.Customer
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "Customer"))
+{
+    <div>
+        @Html.LabelFor(p => p.Name)
+        @Html.TextBoxFor(p => p.Name,new  {@class="form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(p => p.Email)
+        @Html.TextBoxFor(p => p.Email, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(p => p.PhoneNo)
+        @Html.TextBoxFor(p => p.PhoneNo, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-danger" >save</button>
+}
+

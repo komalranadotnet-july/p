@@ -1,0 +1,66 @@
+﻿@model IEnumerable<PS.Models.Car>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>cars  Index</h2>
+
+@Html.ActionLink("++ Addnew Car", "create", "car")
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Color)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Make)
+        </th>Z
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.MYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Style)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vin)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Make)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Style)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vin)
+            </td>
+            <td>
+                @*@Html.ActionLink("View Cars", "Index", "Cars")*@
+
+               @Html.ActionLink("View car Details", "details", new { id = item.Uid})
+                    @Html.ActionLink("Delete car", "Delete", new { id = item.Uid})
+
+                    @Html.ActionLink("Edit car", "edit", new { id = item.Uid })
+            </td>
+        </tr>
+    }
+
+</table>

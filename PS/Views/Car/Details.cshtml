@@ -1,0 +1,37 @@
+﻿@model IEnumerable<PS.Models.Car>
+@*@model PS.Models.Car*@
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<h2> car Details</h2>
+
+
+@foreach (var item in Model)
+{
+    <h3>@item.Color</h3>
+    <h3>@item.Make</h3>
+    <h4>@item.Model</h4>
+    <h5>@item.MYear</h5>
+    <h5>@item.Style</h5>
+    <h6>@item.Vin</h6>
+    <h1>UID  -->@item.Uid</h1>
+    <h4>CARID-->@item.CarsId</h4>
+
+
+}
+
+
+@*<h3>@Model.Color</h3>
+<h3>@Model.Make</h3>
+<h4>@Model.Model</h4>
+<h5>@Model.MYear</h5>
+<h5>@Model.Style</h5>
+<h6>@Model.Vin</h6>
+<h1>UID  -->@Model.Uid</h1>
+<h4>CARID-->@Model.CarsId</h4>
+@Html.ActionLink("Service History","")
+@Html.ActionLink("+New Service ","")
+@Html.ActionLink("Edit", "edit", new { id=Model.Uid})
+@Html.ActionLink("delete", "delete", new { id=Model.Uid})*@
