@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using PS.Models;
 using PS.Models.ViewModels;
 
@@ -31,12 +33,20 @@ namespace PS.Controllers
         }
         public ActionResult Details(int id)
         {
+            //dynamic fetchid = id;
+            //dynamic check = dbObj.cars.Any(q=>q.Uid==id);
+            //if (fetchid != check)
+            //{
+            //    return Content("No car with this id");
+            //    //("no car fond with this id");
+            //}
             var find = dbObj.cars.Where(q => q.Uid == id).ToList();
             //var find = dbObj.cars.SingleOrDefault(q => q.Uid== id);
             if (find==null)
             {
-                return RedirectToAction("Addnew");
+                return View("Addnew");
             }
+           
             return View(find);
         }
         public ActionResult Delete(int id)
@@ -56,7 +66,7 @@ namespace PS.Controllers
         {
             dbObj.cars.Add(cars.IEcarsView);
             dbObj.SaveChanges();
-            return RedirectToAction("Index", "car");
+            return RedirectToAction("");
             //[HttpPost]
             //public Action New()
             //{

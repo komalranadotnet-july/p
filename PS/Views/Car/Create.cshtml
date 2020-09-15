@@ -1,4 +1,4 @@
-﻿@model PS.Models.ViewModels.ViewCustCar
+﻿@model PS.Models.ViewModels.ViewCar
 @{
     ViewBag.Title = "Create";
 }
@@ -33,7 +33,7 @@
     </div>
     <div>
         @Html.LabelFor(p => p.IEcarsView.Uid)
-        @*@Html.TextBoxFor(p => p.IEcarsView.Uid, new { @class = "form-control" })*@
+        @Html.TextBoxFor(p => p.IEcarsView.Uid, new { @class = "form-control" })
     </div>
     <div>
         @Html.DisplayFor(q=>q.IEcarsView.Uid)
