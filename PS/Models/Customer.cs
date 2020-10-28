@@ -5,11 +5,11 @@ using System.Web;
 
 namespace PS.Models
 {
-    public class Customer
-    {
+	public class Customer
+	{
         public int Id { get; set; }
-        public String Name { get; set; }
+        public string Name { get; set; }
         public int PhoneNo { get; set; }
-        public string Email { get; set; }
+        public string  Email { get; set; }
     }
 }

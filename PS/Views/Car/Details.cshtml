@@ -3,13 +3,14 @@
 @{
     ViewBag.Title = "Details";
 }
+@Html.ActionLink("++click here to add new car", "New")
 
 @if (!Model.Any())
 {
     <p>NO car with this id</p>
 
 
-    @Html.ActionLink("++click here to add new car","Create")
+
 }
 
 else
@@ -30,10 +31,15 @@ else
         <h4>CARID-->@item.CarsId</h4>
 
 
+
+        @Html.ActionLink("Delete", "Delete", new { id = item.CarsId })
+        @Html.ActionLink("Edit", "Edit", new { id = item.CarsId })
+
     }
 
+    @Html.ActionLink("Service History", "Details", "ServiceHistory")
 
-
+    @Html.ActionLink("New Service", "New", "NewService")
 }
 
 

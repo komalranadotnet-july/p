@@ -5,21 +5,24 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm("edit", "customer"))
+@using (Html.BeginForm("Save", "Customer"))
 {
+
+
     <div>
         @Html.LabelFor(p => p.Name)
         @Html.TextBoxFor(p => p.Name, new { @class = "form-control" })
     </div>
     <div>
-        @Html.LabelFor(p => p.Email)
-        @Html.TextBoxFor(p => p.Email, new { @class = "form-control" })
-    </div>
-    <div>
         @Html.LabelFor(p => p.PhoneNo)
         @Html.TextBoxFor(p => p.PhoneNo, new { @class = "form-control" })
     </div>
+    <div>
+        @Html.LabelFor(p => p.Email)
+        @Html.TextBoxFor(p => p.Email, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(p => p.Id)
+
     <button type="submit">save</button>
 
 }
-

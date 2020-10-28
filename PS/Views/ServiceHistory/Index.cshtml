@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PS.Models.Services>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Service History</h1>
+
+
+<table class="table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th>Miles</th>
+            <th>Total Price</th>
+            <th>Details</th>
+            <th>Date Added</th>
+            <th>Cars Id</th>
+            <th>Service Name</th>
+             </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        { 
+            <tr>
+                <td>@item.Miles</td>
+
+                <td>@item.TotPrice</td>
+                <td>@item.Details</td>
+                <td>@item.DateAdded</td>
+                <td>@item.CarsId</td>
+                <td>@item.ServiceTypeId</td>
+
+</tr>
+        }
+    </tbody>
+
+</table>
+
+@Html.ActionLink("Back To List", "Index", "Car")
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,50 @@
+﻿@model PS.Models.Car
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Save", "Car"))
+{
+    <div>
+        @Html.LabelFor(p => p.Color)
+        @Html.TextBoxFor(p => p.Color, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(p => p.Make)
+        @Html.TextBoxFor(p => p.Make, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(p => p.Model)
+        @Html.TextBoxFor(p => p.Model, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(p => p.MYear)
+        @Html.TextBoxFor(p => p.MYear, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(p => p.Style)
+        @Html.TextBoxFor(p => p.Style, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(p => p.Vin)
+        @Html.TextBoxFor(p => p.Vin, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.LabelFor(p => p.Uid)
+        @Html.TextBoxFor(p => p.Uid, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.HiddenFor(q=>q.CarsId)
+    </div>
+    @*<div>
+            @Html.LabelFor(p => p.IEcar.Uid)
+            @Html.HiddenFor(p => p.IEcar.Uid,new {@Value Model.IEcust.Id}, new {@class="form-control" })
+        </div>*@
+    <button type="submit">save</button>
+
+
+
+
+}

@@ -1,0 +1,42 @@
+﻿@model PS.Models.ViewModels.AddServiceViewModel
+    @{
+        ViewBag.Title = "New";
+    }
+
+    <h2>Create</h2>
+    @using (Html.BeginForm("Save", "NewService"))
+    {
+        <div>
+            @Html.LabelFor(p => p.Services.Miles)
+            @Html.TextBoxFor(p => p.Services.Miles, new { @class = "form-control" })
+        </div>
+        <div>
+            @Html.LabelFor(p => p.Services.TotPrice)
+            @Html.TextBoxFor(p => p.Services.TotPrice, new { @class = "form-control" })
+        </div>
+        <div>
+            @Html.LabelFor(p => p.Services.Details)
+            @Html.TextBoxFor(p => p.Services.Details, new { @class = "form-control" })
+        </div>
+
+        <div>
+            @Html.LabelFor(p => p.Services.DateAdded)
+            @Html.TextBoxFor(p => p.Services.DateAdded, new { @Value = @DateTime.Now.ToShortDateString(), @class = "form-control" })
+        </div>
+        <div>
+            @Html.LabelFor(p => p.Services.CarsId)
+            @Html.TextBoxFor(p => p.Services.CarsId, new { @class = "form-control" })
+        </div>
+
+    <div class="form-group">
+
+            @Html.LabelFor(m => m.Services.ServiceTypes.ServiceName)
+
+            @Html.DropDownListFor(m => m.Services.ServiceTypeId, new SelectList(Model.ServiceTypes, "Id", "ServiceName"), " ",
+
+           new { @class = "form-control" })
+
+        </div>
+        <button type="Submit" class="btn btn-primary">Save</button>
+    }
+

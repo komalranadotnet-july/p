@@ -22,6 +22,11 @@ namespace PS.Models
     {
         public DbSet<Customer> customers { get; set; }
         public DbSet<Car> cars { get; set; }
+        public DbSet<Services> services { get; set; }
+        public DbSet<ServiceTypes> ServiceTypes{ get; set; }
+
+
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

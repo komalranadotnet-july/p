@@ -21,29 +21,86 @@ namespace PS.Controllers
             var det = dbObj.customers.SingleOrDefault(p => p.Id == id);
             return View(det);
         }
+        //public ActionResult Edit(int id)
+        //{
+        //    var e = dbObj.customers.SingleOrDefault(Q => Q.Id == id);
+        //    var uname = e.Name;
+        //    var uphn = e.PhoneNo;
+        //    var uemail = e.Email;
+        //    dbObj.SaveChanges();
+        //    return View("Edit");
+
+        //}
+
+
+
+
+
+
+
+
+
         public ActionResult Edit(int id)
         {
-            var e = dbObj.customers.SingleOrDefault(Q => Q.Id == id);
-            var uname = e.Name;
-            var uphn = e.PhoneNo;
-            var uemail = e.Email;
-            dbObj.SaveChanges();
-            return RedirectToAction("Index", "Customer");
 
+            var updateCustomer = dbObj.customers.Find(id);
+            if (updateCustomer == null)
+            {
+                return HttpNotFound();
+            }
+
+            var m = updateCustomer;
+
+           dbObj.SaveChanges();
+
+            return View("New", m);
         }
-        public ActionResult Create()
+
+
+
+
+        public ActionResult New()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Customer c)
+        //public ActionResult Save(Customer c)
+        //{
+
+        //    dbObj.customers.Add(c);
+        //    dbObj.SaveChanges();
+        //    return RedirectToAction("Index", "Customer");
+
+        //}
+        public ActionResult Save(Customer customer)
         {
-            
-            dbObj.customers.Add(c);
+
+            if (customer.Id == 0)
+                dbObj.customers.Add(customer);
+
+            else
+            {
+                var customerInDb = dbObj.customers.Single(c => c.Id == customer.Id);
+                customerInDb.Name = customer.Name;
+                customerInDb.PhoneNo = customer.PhoneNo;
+                customerInDb.Email = customer.Email;
+
+
+            }
             dbObj.SaveChanges();
             return RedirectToAction("Index", "Customer");
-
         }
+
+
+
+
+
+
+
+
+
+
+
         public ActionResult Delete(int id)
         {
             var obj = dbObj.customers.Find(id);

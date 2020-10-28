@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
@@ -51,47 +52,102 @@ namespace PS.Controllers
         }
         public ActionResult Delete(int id)
         {
-            //new Car().CarsId = id;
-            var del = dbObj.cars.Find(id);//new Car().CarsId=id);
-            dbObj.cars.Remove(del);
+            var obj = dbObj.cars.Find(id);
+            dbObj.cars.Remove(obj);
             dbObj.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index" ,"Customer");
         }
-        public ActionResult Create()
+
+
+
+
+
+        public ActionResult Edit(int id)
+        {
+
+            var updateCars = dbObj.cars.Find(id);
+            if (updateCars == null)
+            {
+                return HttpNotFound();
+            }
+
+            var m = updateCars;
+
+            dbObj.SaveChanges();
+
+            return View("New", m);
+        }
+
+
+
+
+
+
+
+
+        public ActionResult New()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Create(ViewCar cars)
-        {
-            dbObj.cars.Add(cars.IEcarsView);
-            dbObj.SaveChanges();
-            return RedirectToAction("");
-            //[HttpPost]
-            //public Action New()
-            //{
-            //    var cars = dbObj.cars.ToList();
-            //    var viewModel = new ViewCustCar
-            //    {
-            //        IEcust = new Customer(),
-            //        IEcar = cars
-            //    };
-            //    return View("New", viewModel);
-            //}
-            //[HttpPost]
-            //public ActionResult Save(Car car)
-            //{
-            //    if (!ModelState.IsValid)
-            //    {
-            //        var viewModel = new ViewCustCar
-            //        {
-            //           IEcar=car,
-            //            IEcust=dbObj.customers.ToList()
-            //        };
-            //        return View("New", viewModel);
-            //    }
-            //}
+        //public ActionResult Create(ViewCar cars)
+        //{
+        //    dbObj.cars.Add(cars.IEcarsView);
+        //    dbObj.SaveChanges();
+        //    return RedirectToAction("Index","Customer");
+        //[HttpPost]
+        //public Action New()
+        //{
+        //    var cars = dbObj.cars.ToList();
+        //    var viewModel = new ViewCustCar
+        //    {
+        //        IEcust = new Customer(),
+        //        IEcar = cars
+        //    };
+        //    return View("New", viewModel);
+        //}
+        //[HttpPost]
+        //public ActionResult Save(Car car)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        var viewModel = new ViewCustCar
+        //        {
+        //           IEcar=car,
+        //            IEcust=dbObj.customers.ToList()
+        //        };
+        //        return View("New", viewModel);
+        //    }
+        //}
 
+        // }
+
+
+
+        public ActionResult Save(Car cars)
+        {
+
+            if (cars.CarsId == 0)
+                dbObj.cars.Add(cars);
+
+            else
+            {
+                var customerInDb = dbObj.cars.Single(c => c.CarsId == cars.CarsId);
+                customerInDb.Color= cars.Color;
+                customerInDb.Make = cars.Make;
+                customerInDb.MYear = cars.MYear;
+                customerInDb.Model = cars.Model;
+                customerInDb.Vin = cars.Vin;
+                customerInDb.Style= cars.Style;
+                customerInDb.Uid = cars.Uid;
+
+
+
+            }
+            dbObj.SaveChanges();
+            return RedirectToAction("Index", "Customer");
         }
+
+
     }
 }

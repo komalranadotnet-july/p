@@ -5,7 +5,7 @@
 }
 
 <h2>Index</h2>
-@Html.ActionLink("+NEw CUSt ","create","customer")
+@Html.ActionLink("+NEw CUSt ","New","customer")
 @*@foreach (var item in Model)
 {
     @Html.ActionLink(item.Name,"details","customer",new { id=item.Id},null)
@@ -45,7 +45,7 @@
         @Html.ActionLink("ViewDetails","details",new { id=item.Id})
         @Html.ActionLink("Delete", "Delete", new { id = item.Id })
 
-        @Html.ActionLink("Edit","edit",new { id=item.Id})
+        @Html.ActionLink("Edit","Edit",new { id=item.Id})
       
     </td>
 </tr>}

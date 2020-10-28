@@ -55,12 +55,27 @@
             <td>
                 @*@Html.ActionLink("View Cars", "Index", "Cars")*@
 
-               @Html.ActionLink("View car Details", "details", new { id = item.Uid})
-                    @Html.ActionLink("Delete car", "Delete", new { id = item.Uid})
+                @Html.ActionLink("View car Details", "details", new { id = item.Uid })
 
-                    @Html.ActionLink("Edit car", "edit", new { id = item.Uid })
+                @Html.ActionLink("New Service", "Create", "NewService")
+
+                @*@Html.ActionLink("Delete car", "Delete", new { id = item.CarsId })*@
+
+                @Html.ActionLink("Edit car", "edit", new { id = item.Uid })
+               
+                
+               
+
+
             </td>
-        </tr>
+          </tr>
     }
 
 </table>
+
+
+
+
+
+
+

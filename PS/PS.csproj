@@ -51,12 +51,21 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -169,11 +178,16 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\CarController.cs" />
+    <Compile Include="Controllers\Api\CustomerController.cs" />
     <Compile Include="Controllers\CarController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NewServiceController.cs" />
+    <Compile Include="Controllers\ServiceHistoryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -189,12 +203,35 @@
     <Compile Include="Migrations\202009031716217_FK added in Cars.Designer.cs">
       <DependentUpon>202009031716217_FK added in Cars.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009160736302_Add Sevices and ServiceTypes table in database.cs" />
+    <Compile Include="Migrations\202009160736302_Add Sevices and ServiceTypes table in database.Designer.cs">
+      <DependentUpon>202009160736302_Add Sevices and ServiceTypes table in database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009161708531_Add Nullable to cars.cs" />
+    <Compile Include="Migrations\202009161708531_Add Nullable to cars.Designer.cs">
+      <DependentUpon>202009161708531_Add Nullable to cars.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010281055006_ValidationAdded.cs" />
+    <Compile Include="Migrations\202010281055006_ValidationAdded.Designer.cs">
+      <DependentUpon>202010281055006_ValidationAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010281317395_Validation removed.cs" />
+    <Compile Include="Migrations\202010281317395_Validation removed.Designer.cs">
+      <DependentUpon>202010281317395_Validation removed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010281328587_Customer added.cs" />
+    <Compile Include="Migrations\202010281328587_Customer added.Designer.cs">
+      <DependentUpon>202010281328587_Customer added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Services.cs" />
+    <Compile Include="Models\ServiceTypes.cs" />
+    <Compile Include="Models\ViewModels\AddServiceViewModel.cs" />
     <Compile Include="Models\ViewModels\ViewCar.cs" />
     <Compile Include="Models\ViewModels\ViewCust.cs" />
     <Compile Include="Models\ViewModels\ViewCustCar.cs" />
@@ -353,10 +390,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
-    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\New.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Car\Index.cshtml" />
-    <Content Include="Views\Car\Create.cshtml" />
+    <Content Include="Views\Car\New.cshtml" />
     <Content Include="Views\Car\Details.cshtml" />
     <Content Include="Views\Car\Addnew.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -369,6 +406,10 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\NewService\New.cshtml" />
+    <Content Include="Views\ServiceHistory\Index.cshtml" />
+    <Content Include="Views\ServiceHistory\Details.cshtml" />
+    <Content Include="Views\Car\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -387,6 +428,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009031716217_FK added in Cars.resx">
       <DependentUpon>202009031716217_FK added in Cars.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009160736302_Add Sevices and ServiceTypes table in database.resx">
+      <DependentUpon>202009160736302_Add Sevices and ServiceTypes table in database.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009161708531_Add Nullable to cars.resx">
+      <DependentUpon>202009161708531_Add Nullable to cars.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010281055006_ValidationAdded.resx">
+      <DependentUpon>202010281055006_ValidationAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010281317395_Validation removed.resx">
+      <DependentUpon>202010281317395_Validation removed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010281328587_Customer added.resx">
+      <DependentUpon>202010281328587_Customer added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

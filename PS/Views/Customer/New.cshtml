@@ -1,14 +1,14 @@
 ﻿@model PS.Models.Customer
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "New";
 }
 
 <h2>Create</h2>
-@using (Html.BeginForm("Create", "Customer"))
+@using (Html.BeginForm("Save", "Customer"))
 {
     <div>
         @Html.LabelFor(p => p.Name)
-        @Html.TextBoxFor(p => p.Name,new  {@class="form-control" })
+        @Html.TextBoxFor(p => p.Name, new { @class = "form-control" })
     </div>
     <div>
         @Html.LabelFor(p => p.Email)
@@ -18,6 +18,8 @@
         @Html.LabelFor(p => p.PhoneNo)
         @Html.TextBoxFor(p => p.PhoneNo, new { @class = "form-control" })
     </div>
-    <button type="submit" class="btn btn-danger" >save</button>
+    @Html.HiddenFor(b => b.Id)
+
+    <button type="submit" class="btn btn-danger">save</button>
 }
 

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<PS.Models.Services>
+@{
+    ViewBag.Title = "Details";
+}
+
+
+@if (!Model.Any())
+{
+    <p>NO Services</p>
+
+
+
+}
+
+else
+{
+
+
+    <h2> Service Details</h2>
+
+    foreach (var item in Model)
+    {
+        <h3>@item.Miles</h3>
+        <h3>@item.TotPrice</h3>
+        <h4>@item.DateAdded</h4>
+        <h5>@item.Details</h5>
+        
+
+
+
+    }
+
+}
